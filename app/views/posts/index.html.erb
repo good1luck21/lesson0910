@@ -1,0 +1,14 @@
+<h1>Posts#index</h1>
+<p>Find me in app/views/posts/index.html.erb</p>
+<%= form_tag("/posts") do %>
+  title: <input type="text" name="title" /><br />
+  body: <textarea name="body"></textarea><br />
+  <input type="submit" value="Create Post" /><br />
+<% end %>
+<% @posts.each do |post| %>
+  <%= form_tag("/posts/#{post.id}") do %>
+    No. <%= post.id %> | <input type="text" name="title" value="<%= post.title %>" />
+    <textarea name="body"><%= post.body %></textarea><input type="submit" value="Update" /><br />
+  <% end %>
+  <%= link_to("削除", "/posts/#{post.id}/delete", {method: "post"}) %>
+<% end %>
